@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+class HelloWorld {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int s=99;
+        int a[][]=new int[99][99];
+        int c=(s*4)-4;
+        int f=0;
+        for(int i=0;i<s;i++)
+        {
+            String st=sc.next();
+            for(int j=0;j<s;j++)
+            {
+                char ch=st.charAt(j);
+                a[i][j]=ch-'0';
+            }
+        }
+        for(int i=1;i<s-1;i++)
+        {
+            for(int j=1;j<s-1;j++)
+            {
+                for(int k=0;k<j;k++)
+                {
+                    if(a[i][j]<=a[i][k])
+                    {
+                        f+=1;
+                        break;
+                    }
+                }
+                for(int k=j+1;k<s;k++)
+                {
+                    if(a[i][j]<=a[i][k])
+                    {
+                        f+=1;
+                        break;
+                    }
+                }
+                for(int l=0;l<i;l++)
+                {
+                    if(a[i][j]<=a[l][j])
+                    {
+                        f+=1;
+                        break;
+                    }
+                }
+                for(int l=i+1;l<s;l++)
+                {
+                    if(a[i][j]<=a[l][j])
+                    {
+                        f+=1;
+                        break;
+                    }
+                }
+                if(f<4){++c;f=0;}
+                else f=0;
+            }
+        }
+        System.out.println(c);
+    }
+}
